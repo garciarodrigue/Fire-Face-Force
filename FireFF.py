@@ -42,7 +42,7 @@ mail = input(BM + C + "Insert Mail: \v"+
 G +  Bb)
 view = print(R +"Set >>" + G, mail)
 print("\n")
-print(f"{BR} {G} Connecting {B} Faceboock" + Bb)
+print(f"{BR} {G} Connectin {B} Facebook" + Bb)
 
 time.sleep(2.0)
 os.system('cls' if os.name == 'nt' else 'clear')
