@@ -10,6 +10,9 @@ Facebook Embed code injection password of BD</p>
 <div>
 <p>
 <mark>Instalacion rapida en Termux o Linux</mark></p>
-<p>git clone https://github.com/garciarodrigue/Fire-Face-Force.git ;cd FireFaceForce ;python FireFF.py
-<img src="fff.png" width="120">
-</div>
+<p>git clone https://github.com/garciarodrigue/Fire-Face-Force.git ; cd FireFaceForce ; python FireFF.py
+</div
+<br>
+<section>
+<img src="fff.png" width="160px">
+</section>
