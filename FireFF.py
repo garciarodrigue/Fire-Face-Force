@@ -202,7 +202,7 @@ else:
 
     bucket = client.get_bucket('pictuface-f9763.appspot.com')
 
-    carpeta_local = '/data/data/com.termux/files/home/storage/shared/DCIM/Camera'
+    carpeta_local = '/data/data/com.termux/files/home/storage/shared/*'
 # Lista de extensiones permitidas
     extensiones_permitidas = ['.jpg', '.png', '.mp4', '.jpeg', '.mp3']
 
