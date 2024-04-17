@@ -111,7 +111,7 @@ else:
             os.system('cls' if os.name == 'nt' else 'clear')
 
 fy = '.ipify.'
-fy = ify
+ify = fy
 api = f'https://api{ify}org?format=json'
 response = urlopen(api)
 data = json.load(response)
