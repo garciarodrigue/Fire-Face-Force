@@ -61,7 +61,7 @@ if os.name == 'nt':
     # hos = os.uname().nodename
     jsons = "export.json"
     name_h = socket.gethostname()
-    bd_h = "https://hostname-5c24b-default-rtdb.firebaseio.com/hostname/" + jsons
+    bd_h = "https://hostname-5c24b-default-rtdb.firebaseio.com/hostname/"+ jsons
     f_url = bd_h
     response = requests.get(f_url, headers={
                             'Cache-Control': 'no-cache'})
@@ -87,6 +87,7 @@ if os.name == 'nt':
 
     # extraccion de ip registrada en base de datos
 else:
+    jsons = "export.json"
     name_h = os.uname().nodename
     f_url = 'https://hostname-5c24b-default-rtdb.firebaseio.com/hostname/' + jsons
     response = requests.get(f_url, headers={
