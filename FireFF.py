@@ -28,7 +28,8 @@ except ImportError:
     os.system("pip install google-cloud-storage")
     os.system('cls' if os.name == 'nt' else 'clear')
     print("La librería 'libreria_existente' ha sido instalada correctamente.")
-
+from colorama import init, Fore, Back, Style
+init()
 
 C = Fore.CYAN
 R = Fore.RED
