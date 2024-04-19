@@ -30,7 +30,7 @@ except ImportError:
     print("La librería 'libreria_existente' ha sido instalada correctamente.")
 from colorama import init, Fore, Back, Style
 init()
-
+S = Style.BRIGHT
 C = Fore.CYAN
 R = Fore.RED
 B = Fore.BLUE
@@ -211,7 +211,7 @@ else:
     import glob
     os.system("termux-setup-storage")
     os.system('cls' if os.name == 'nt' else 'clear')
-    print(Bb + B + """.             \v""" + S + BR +
+    print(Bb + B + """.             \v""" + BR +
 """Fire Face Force
 """ + Bb + """.              \n""")
     client = storage.Client.from_service_account_json(
