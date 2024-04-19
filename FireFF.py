@@ -14,6 +14,7 @@ try:
 except ImportError:
     
     print("librería no instalada. Instalando...")
+    import os
     # pip para instalar la librería automáticamente.
     os.system("pip install art")
     os.system("pip install json")
